@@ -33,13 +33,27 @@ body {
   flex-direction: column;
 }
 
+form, .content {
+  text-align: left;
+}
+
 html {
   background: asset-url("webb.png");
+}
 
+textarea {
+  height: 160px;
 }
 
 .box {
   text-align: center;
+}
+
+.footer {
+  padding-bottom: 20px !important;
+  padding-top: 20px !important;
+  background-color: #363636 !important;
+  color: white !important;
 }
 
 .navbar-start .navbar-item {
@@ -55,15 +69,12 @@ html {
   text-align: center;
 }
 
-.footer {
-  padding-bottom: 20px !important;
-  padding-top: 20px !important;
-  background-color: #363636 !important;
-  color: white !important;
+.post_post_body, .user_current_password, .user_email, .user_password_confirmation {
+  margin-bottom: 12px;
 }
 
-.user_password_confirmation {
-  margin-bottom: 12px;
+.smaller {
+  font-size: 14px;
 }
 
 #logo-icon {

@@ -1,14 +1,34 @@
-<p id="notice"><%= notice %></p>
+<div class="column is-one-third is-narrow">
+  <div class="box">
+    <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Post title:</strong>
-  <%= @post.post_title %>
-</p>
-
-<p>
-  <strong>Post body:</strong>
-  <%= @post.post_body %>
-</p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+    <h3 class="title">
+      <%= @post.post_title %>
+      </h3>
+    <h5 class="subtitle">
+      <span>Author: </span> 
+      <% if user_signed_in? %>
+        <%= @post.user.name %>
+      <% else %>
+        <span>Anonymous</span>
+      <% end %>
+    </h5>
+    
+    <div class="content">
+      <p>
+        <%= @post.post_body %>
+      </p>
+    </div>
+    
+    <% if user_signed_in? %>
+      <% if current_user.name == @post.user.name %>
+        <%= link_to 'Edit', edit_post_path(@post) %> |
+      <% end %>
+    <% end %>
+    
+    <%= link_to root_path do %>
+      <span class='icon'><%= fa_icon('vihara') %></span>
+      <span>Home</span>
+    <% end %>
+  </div>
+</div>

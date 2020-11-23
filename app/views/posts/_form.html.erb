@@ -4,11 +4,17 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :post_title %>
-    <%= f.input :post_body %>
+    <%= f.input :post_title, label: 'Title:' %>
+    <%= f.input :post_body, label: 'Body:', input_html: { rows: '10', class: 'textarea' } %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="form-actions columns is-centered field">
+    <div class="column is-half control">
+      <%= button_tag type: 'submit', class: "button is-dark is-small is-fullwidth" do %>
+        <i class='icon'><%= fa_icon('sign-in-alt') %></i>
+        <span>Create Post</span>
+      <% end %>
+    </div>
   </div>
+  <br>
 <% end %>

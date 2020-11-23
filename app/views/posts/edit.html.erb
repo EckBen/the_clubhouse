@@ -1,6 +1,17 @@
-<h1>Editing Post</h1>
+<div class="column is-one-third is-narrow">
+  <div class="box">
+    <h1 class="title">Edit your post</h1>
+    <h2 class="subtitle">Want to make it more scandalous?</h2>
 
-<%= render 'form', post: @post %>
+    <%= render 'form', post: @post %>
 
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+    <%= link_to @post do %>
+      <span class='icon'><%= fa_icon('scroll') %></span>
+      <span>Post Page</span>
+    <% end %>
+    <%= link_to root_path do %>
+      <span class='icon'><%= fa_icon('vihara') %></span>
+      <span>Cancel</span>
+    <% end %>
+  </div>
+</div>

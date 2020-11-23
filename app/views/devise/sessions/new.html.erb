@@ -1,20 +1,30 @@
-<h2>Log in</h2>
+<div class="column is-one-third is-narrow">
+  <div class="box">
+    <h1 class="title">Welcome Back!</h1>
+    <h2 class="subtitle">Let's get in on the gossip...</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-inputs">
+        <%= f.input :email,
+                    required: false,
+                    autofocus: true,
+                    input_html: { autocomplete: "email" } %>
+        <%= f.input :password,
+                    required: false,
+                    input_html: { autocomplete: "current-password" } %>
+        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      </div>
+
+      <div class="form-actions columns is-centered field">
+        <div class="column is-half control">
+          <%= button_tag type: 'submit', class: "button is-dark is-small is-fullwidth" do %>
+            <i class='icon'><%= fa_icon('sign-in-alt') %></i>
+            <span>Log in</span>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Log in", class: "button is-dark" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

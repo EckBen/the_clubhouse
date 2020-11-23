@@ -35,6 +35,12 @@
             <%= link_to "Sign Up", new_user_registration_path, class: "navbar-item" %>
           <% end %>
         </div>
+        <div class="navbar-end">
+          <% if user_signed_in? %>
+            <%= link_to "My Posts(LINK TO MY POSTS ONLY)", new_post_path, class: "navbar-item smaller" %>
+            <%= link_to "Create Post", new_post_path, class: "navbar-item" %>
+          <% end %>
+        </div>
       </div>
     </nav>
     
@@ -56,8 +62,12 @@
     
     <footer class='footer'>
       <div class="content has-text-centered">
+        <% if !user_signed_in? %>
+          To see the authors of these posts either sign in or create a new account!
+        <% end %>
+
         <p>
-          This site was created in answer to the Project: Authentication specs in the Ruby on Rails Course from The Odin Project. By: Ben Eck
+          This site was created in answer to the 'Project: Authentication' specs in the Ruby on Rails Course from The Odin Project. By: Ben Eck
         </p>
       </div>
     </footer>
