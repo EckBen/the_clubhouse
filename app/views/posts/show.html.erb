@@ -1,18 +1,18 @@
-<div class="column is-one-third is-narrow">
+<div class="column is-two-thirds is-narrow">
   <div class="box">
     <p id="notice"><%= notice %></p>
 
-    <h3 class="title">
+    <h1 class="title">
       <%= @post.post_title %>
-      </h3>
-    <h5 class="subtitle">
+    </h1>
+    <h2 class="subtitle">
       <span>Author: </span> 
       <% if user_signed_in? %>
         <%= @post.user.name %>
       <% else %>
         <span>Anonymous</span>
       <% end %>
-    </h5>
+    </h2>
     
     <div class="content">
       <p>
@@ -32,3 +32,33 @@
     <% end %>
   </div>
 </div>
+
+<div class="column is-one-third is-narrow">
+  <div class="box">
+    <h2 class="title is-4">Comments (<%= @post.comments.size %>)</h2>
+
+    <% @post.comments.each do |comment| %>
+      <div class="comment">
+        <div class="comment_author">
+          <% if user_signed_in? %>
+            <p>
+              <span class="user-name"><%= comment.user.username %></span> 
+              <span>says:</span>
+            </p>
+          <% else %>
+            <p><span class="user-name">Anonymous says:</span></p>
+          <% end %>
+        </div>
+        <div class="comment_body">
+          <p><%= comment.comment_body %></p>
+        </div>
+      </div>
+    <% end %>
+
+    <br>
+    <% if user_signed_in? %>
+      <%= render partial: 'comments/form' %>
+    <% end %>
+  </div>
+</div>
+  

@@ -49,6 +49,22 @@ textarea {
   text-align: center;
 }
 
+.comment_author {
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.comment_body {
+  text-align: left;
+  font-size: 14px;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: rgba(54, 54, 54, 0.2);
+  border-style: solid;
+  margin-bottom: 12px;
+  padding: 3px 20px 3px 20px;
+}
+
 .footer {
   padding-bottom: 20px !important;
   padding-top: 20px !important;
@@ -69,12 +85,23 @@ textarea {
   text-align: center;
 }
 
-.post_post_body, .user_current_password, .user_email, .user_password_confirmation {
+.comment_comment_body, .post_post_body, .user_current_password, .user_email, .user_password_confirmation {
   margin-bottom: 12px;
 }
 
 .smaller {
   font-size: 14px;
+}
+
+.user-name {
+  font-weight: 600;
+  font-size: 16px;
+  color: black;
+}
+
+#comment-subtitle {
+  text-align: left;
+  margin-bottom: 5px;
 }
 
 #logo-icon {

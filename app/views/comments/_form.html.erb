@@ -1,0 +1,19 @@
+<h3 id="comment-subtitle" class="subtitle">Want to say something about the article?</h3>
+
+
+<%= simple_form_for [ @post, @comment ] do |f| %>
+  <div class="form-inputs">
+    <%= f.input :comment_body,
+                required: true,
+                label: false,
+                input_html: { autocomplete: "comment_body", placeholder: 'Comment...', rows: '3', class: 'textarea' }%>
+  </div>
+
+  <div class="form-actions columns is-centered field">
+    <div class="column is-half control">
+      <%= button_tag type: 'submit', class: "button is-dark is-small is-fullwidth" do %>
+        <span>Comment</span>
+      <% end %>
+    </div>
+  </div>
+<% end %>
