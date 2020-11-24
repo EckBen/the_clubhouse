@@ -1,0 +1,20 @@
+<% ((@posts.length / 3) + 1).times do |x| %>
+  <div class="tile is-ancestor">
+  
+    <% 3.times do |y| %>
+      <% post_number = x * 3 + y %>
+
+      <% if !@posts[post_number].nil? %>
+        <div class="tile is-parent">
+          <%= link_to post_path(post_number + 1), class: 'tile is-child box' do %>
+            <p class="subtitle"><%= @posts[post_number].post_title %></p>
+            <hr>
+            <p><%= @posts[post_number].post_body[0,50] + '...' %></p>
+          <% end %>  
+        </div>
+      <% else %>
+        <div class="tile is-parent"><div class="tile is-child"></div></div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

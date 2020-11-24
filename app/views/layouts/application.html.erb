@@ -37,7 +37,8 @@
         </div>
         <div class="navbar-end">
           <% if user_signed_in? %>
-            <%= link_to "My Posts(LINK TO MY POSTS ONLY)", new_post_path, class: "navbar-item smaller" %>
+            <%= link_to "My Comments", my_comments_path, class: "navbar-item smaller" %>
+            <%= link_to "My Posts", my_posts_path, class: "navbar-item smaller" %>
             <%= link_to "Create Post", new_post_path, class: "navbar-item" %>
           <% end %>
         </div>

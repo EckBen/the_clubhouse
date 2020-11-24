@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  validates :post_body, presence: true
+  validates :post_body, presence: true, length: { minimum: 60 }
   validates :post_title, presence: true, uniqueness: true, length: { minimum: 5 }
   validates :user_id, presence: true
   

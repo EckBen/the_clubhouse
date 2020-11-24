@@ -1,21 +1,19 @@
 <section id='wrapper' class="section columns is-centered">
 <div class="column is-two-thirds is-narrow">
-  <div class="box">
-    <p id="notice"><%= notice %></p>
-
+  <div class="box tile-back">
     <h1 class="title">
       <%= @post.post_title %>
     </h1>
     <h2 class="subtitle">
       <span>Author: </span> 
       <% if user_signed_in? %>
-        <%= @post.user.name %>
+        <span><%= @post.user.name %></span>
       <% else %>
         <span>Anonymous</span>
       <% end %>
     </h2>
     
-    <div class="content">
+    <div class="block">
       <p>
         <%= @post.post_body %>
       </p>
@@ -35,14 +33,8 @@
 </div>
 
 <div class="column is-one-third is-narrow">
-  <div class="box">
+  <div class="box tile-back">
     <h2 class="title is-4">Comments</h2>
-
-    <%# <% if @post.comments.any? %\>
-      <% @post.comments.each do |comment| %\>
-        <%= render partial: 'comment', locals: { comment: comment} %\>
-      <% end %\>
-    <% end %\> %>
 
     <%= render partial: 'comment', collection: @post.comments %>
     
