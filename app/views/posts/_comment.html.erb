@@ -1,0 +1,42 @@
+<div class="comment">
+  <div class="comment_author">
+    <% if user_signed_in? %>
+      <p>
+        <span class="user-name"><%= comment.user.username %></span> 
+        <span>says:</span>
+      </p>
+    <% else %>
+      <p><span class="user-name">Anonymous says:</span></p>
+    <% end %>
+  </div>
+  
+  <div class="comment_body">
+    <p><%= comment.comment_body %></p>
+  </div>
+
+  <div class="reply-form">
+    <%= simple_form_for [comment, Comment.new] do |f| %>
+      <div class="field has-addons">
+        <div class="control is-expanded">
+          <%= f.input_field :comment_body,
+                            placeholder: "Add a Reply",
+                            label: false,
+                            rows: '1',
+                            class: 'textarea reply-sizing' %>
+        </div>
+        <div class="control">
+          <%= f.button :submit, "Reply", class: 'is-dark is-small reply-button' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%= render partial: 'comment', collection: comment.comments %>
+
+
+  <%# <% if comment.comments.any? %\>
+    <% comment.comments.each do %\>
+      <%= render partial: 'comment', locals: { comment: comment} %\>
+    <% end %\>
+  <% end %\> %>
+</div>

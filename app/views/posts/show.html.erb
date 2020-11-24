@@ -1,3 +1,4 @@
+<section id='wrapper' class="section columns is-centered">
 <div class="column is-two-thirds is-narrow">
   <div class="box">
     <p id="notice"><%= notice %></p>
@@ -35,30 +36,23 @@
 
 <div class="column is-one-third is-narrow">
   <div class="box">
-    <h2 class="title is-4">Comments (<%= @post.comments.size %>)</h2>
+    <h2 class="title is-4">Comments</h2>
 
-    <% @post.comments.each do |comment| %>
-      <div class="comment">
-        <div class="comment_author">
-          <% if user_signed_in? %>
-            <p>
-              <span class="user-name"><%= comment.user.username %></span> 
-              <span>says:</span>
-            </p>
-          <% else %>
-            <p><span class="user-name">Anonymous says:</span></p>
-          <% end %>
-        </div>
-        <div class="comment_body">
-          <p><%= comment.comment_body %></p>
-        </div>
-      </div>
-    <% end %>
+    <%# <% if @post.comments.any? %\>
+      <% @post.comments.each do |comment| %\>
+        <%= render partial: 'comment', locals: { comment: comment} %\>
+      <% end %\>
+    <% end %\> %>
 
+    <%= render partial: 'comment', collection: @post.comments %>
+    
     <br>
+    
     <% if user_signed_in? %>
       <%= render partial: 'comments/form' %>
     <% end %>
+
   </div>
 </div>
+</section>
   

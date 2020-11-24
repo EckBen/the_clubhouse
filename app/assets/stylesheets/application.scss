@@ -49,6 +49,10 @@ textarea {
   text-align: center;
 }
 
+.comment .comment {
+  padding-left: 30px;
+}
+
 .comment_author {
   text-align: left;
   margin-bottom: 5px;
@@ -87,6 +91,19 @@ textarea {
 
 .comment_comment_body, .post_post_body, .user_current_password, .user_email, .user_password_confirmation {
   margin-bottom: 12px;
+}
+
+.reply-button {
+  height: 36px !important;
+}
+
+.reply-form {
+  padding-left: 30px;
+}
+
+.reply-sizing {
+  font-size: 12px !important;
+  line-height: 18px !important;
 }
 
 .smaller {
