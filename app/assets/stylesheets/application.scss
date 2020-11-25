@@ -33,6 +33,10 @@ body {
   flex-direction: column;
 }
 
+div.comment_author > p {
+  position: relative;
+}
+
 form, .content {
   text-align: left;
 }
@@ -72,6 +76,18 @@ textarea {
   border-style: solid;
   margin-bottom: 12px;
   padding: 3px 20px 3px 20px;
+}
+
+.comment_controls {
+  text-align: right;
+  font-size: 12px;
+  position: absolute;
+  right: 0px;
+}
+
+.enter {
+  width: 40%;
+  margin-left: 30%;
 }
 
 .footer {
@@ -116,8 +132,28 @@ textarea {
 }
 
 .tile-back {
-  background-color: rgba(200,200,200,0.8) !important;
+  background-color: rgba(200,200,200,0.85) !important;
   border: 1px solid rgb(70, 70, 70);
+}
+
+.tile.is-child.box {
+  position: relative;
+  padding-bottom: 30px;
+}
+
+.tile-controls {
+  width: 92%;
+  position: absolute;
+  left: 18px;
+  bottom: 0px;
+}
+
+.tile-buttons {
+  text-align: right;
+}
+
+.tile-hr {
+  margin: 4px !important;
 }
 
 .block {
@@ -129,9 +165,13 @@ textarea {
 }
 
 .user-name {
-  font-weight: 600;
+  font-weight: 600 !important;
   font-size: 16px;
   color: black;
+}
+
+.white-back {
+  background-color: white;
 }
 
 #comment-subtitle {

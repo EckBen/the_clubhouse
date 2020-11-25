@@ -5,10 +5,16 @@
 
     <%= render 'form', post: @post %>
 
+    <%= link_to @post, method: :delete, data: { confirm: 'Are you sure?' } do %>
+      <span class='icon'><%= fa_icon('trash') %></span>
+      <span>Delete Post</span>
+    <% end %>
+    <span> | </span>
     <%= link_to @post do %>
       <span class='icon'><%= fa_icon('scroll') %></span>
       <span>Post Page</span>
     <% end %>
+    <span> | </span>
     <%= link_to root_path do %>
       <span class='icon'><%= fa_icon('vihara') %></span>
       <span>Cancel</span>

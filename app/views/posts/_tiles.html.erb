@@ -1,20 +1,49 @@
-<% ((@posts.length / 3) + 1).times do |x| %>
-  <div class="tile is-ancestor">
-  
-    <% 3.times do |y| %>
-      <% post_number = x * 3 + y %>
-
-      <% if !@posts[post_number].nil? %>
-        <div class="tile is-parent">
-          <%= link_to post_path(post_number + 1), class: 'tile is-child box' do %>
-            <p class="subtitle"><%= @posts[post_number].post_title %></p>
-            <hr>
-            <p><%= @posts[post_number].post_body[0,50] + '...' %></p>
-          <% end %>  
-        </div>
-      <% else %>
-        <div class="tile is-parent"><div class="tile is-child"></div></div>
-      <% end %>
-    <% end %>
+<% if @posts.length == 0 %>
+  <div class="box">
+    <p class="subtitle">Oh no!!! There is no content here!!!</p>
+    <p>Create your first post by clicking 'Create Post' in the upper right hand corner of this page.</p>
   </div>
+<% else %>
+  <% ((@posts.length / 3) + 1).times do |x| %>
+    <div class="tile is-ancestor">
+    
+      <% 3.times do |y| %>
+        <% post_index = x * 3 + y %>
+
+        <% if !@posts[post_index].nil? %>
+          <div class="tile is-parent">
+            <div class="tile is-child box">
+              <%= link_to post_path(@posts[post_index].id) do %>
+                <p class="subtitle"><%= @posts[post_index].post_title %></p>
+                <hr class="tile-hr">
+                <p class="subtitle is-6"><%= @posts[post_index].post_body[0,50] + '...' %></p>
+              <% end %>
+
+              <% if user_signed_in? && current_user.id == @posts[post_index].user_id %>
+                <div class="tile-controls">
+                  <hr class="tile-hr">
+                  <div class="tile-buttons">
+                    <%= link_to edit_post_path(@posts[post_index].id) do %>
+                      <span class='icon'><%= fa_icon('edit') %></span>
+                      <span>Edit Post</span>
+                    <% end %>
+                    
+                    <% if params[:controller] == 'my_posts' %>
+                      <span> | </span>
+                      <%= link_to post_path(@posts[post_index].id), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                        <span class='icon'><%= fa_icon('trash') %></span>
+                        <span>Delete Post</span>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% else %>
+          <div class="tile is-parent"><div class="tile is-child"></div></div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>

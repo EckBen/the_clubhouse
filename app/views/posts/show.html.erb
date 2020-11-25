@@ -1,50 +1,59 @@
 <section id='wrapper' class="section columns is-centered">
-<div class="column is-two-thirds is-narrow">
-  <div class="box tile-back">
-    <h1 class="title">
-      <%= @post.post_title %>
-    </h1>
-    <h2 class="subtitle">
-      <span>Author: </span> 
-      <% if user_signed_in? %>
-        <span><%= @post.user.name %></span>
-      <% else %>
-        <span>Anonymous</span>
+  <div class="column is-two-thirds is-narrow">
+    <div class="box tile-back">
+      <h1 class="title">
+        <%= @post.post_title %>
+      </h1>
+      <h2 class="subtitle">
+        <span>Author: </span> 
+        <% if user_signed_in? %>
+          <span><%= @post.user.name %></span>
+        <% else %>
+          <span>Anonymous</span>
+        <% end %>
+      </h2>
+      
+      <div class="block white-back">
+        <p>
+          <%= @post.post_body %>
+        </p>
+      </div>
+      
+      <% if user_signed_in? && current_user.name == @post.user.name %>
+        <%= link_to edit_post_path(@post) do %>
+          <span class='icon'><%= fa_icon('edit') %></span>
+          <span>Edit Post</span>
+        <% end %>
+        <span> | </span>
+        <%= link_to post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <span class='icon'><%= fa_icon('trash') %></span>
+          <span>Delete Post</span>
+        <% end %>
+        <span> | </span>
       <% end %>
-    </h2>
-    
-    <div class="block">
-      <p>
-        <%= @post.post_body %>
-      </p>
+      
+      <%= link_to root_path do %>
+        <span class='icon'><%= fa_icon('vihara') %></span>
+        <span>Home</span>
+      <% end %>
     </div>
-    
-    <% if user_signed_in? %>
-      <% if current_user.name == @post.user.name %>
-        <%= link_to 'Edit', edit_post_path(@post) %> |
+  </div>
+
+  <div class="column is-one-third is-narrow">
+    <div class="box tile-back">
+      <h2 class="title is-4">Comments</h2>
+
+      <%= render partial: 'comment', collection: @post.comments %>
+      
+      <br>
+      
+      <% if user_signed_in? %>
+        <h3 id="comment-subtitle" class="subtitle">Want to say something about the article?</h3>
+
+        <%= render partial: 'comments/form' %>
       <% end %>
-    <% end %>
-    
-    <%= link_to root_path do %>
-      <span class='icon'><%= fa_icon('vihara') %></span>
-      <span>Home</span>
-    <% end %>
+
+    </div>
   </div>
-</div>
-
-<div class="column is-one-third is-narrow">
-  <div class="box tile-back">
-    <h2 class="title is-4">Comments</h2>
-
-    <%= render partial: 'comment', collection: @post.comments %>
-    
-    <br>
-    
-    <% if user_signed_in? %>
-      <%= render partial: 'comments/form' %>
-    <% end %>
-
-  </div>
-</div>
 </section>
   

@@ -1,2 +1,21 @@
-<p>Welcome index page</p>
-<%# Link to posts_path somewhere %>
+<div class="column is-half">
+  <div class="box">
+    <p class="title is-1">Welcome to the Clubhouse!</p>
+    <p class="subtitle is-3">Get ready to air some dirty laundry...</p>
+    
+    <hr>
+
+    <p>Here in the Clubhouse we treasure anonymity.</p>
+    <p>You don't get to see who is posting or commenting until you create an account!</p>
+    <p>That said, feel free to explore what everyone has to say!</p>
+    
+    <hr>
+
+    <div class="enter">  
+      <%= link_to posts_path, class: "button is-dark is-small is-fullwidth" do %>
+        <i class='icon'><%= fa_icon('door-open') %></i>
+        <span>Enter</span>
+      <% end %>
+    </div>
+  </div>
+</div>

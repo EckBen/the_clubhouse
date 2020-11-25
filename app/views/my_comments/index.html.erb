@@ -1,3 +1,103 @@
-<p>My comments index page</p>
-<%= @comments.first.comment_body %>
-<%# Account for no content! %>
+<div class="column is-three-quarters box tile-back">
+
+  <h1 class="title">My Comments</h1>
+
+  <% if @comments.length == 0 %>
+    <div class="box">
+      <p class="subtitle">Oh no!!! There is no content here!!!</p>
+      <p>Create your first comment by going to a post and responding to it or to another user.</p>
+    </div>
+  <% else %>
+    <% ((@comments.length / 3) + 1).times do |x| %>
+      <div class="tile is-ancestor">
+      
+        <% 3.times do |y| %>
+          <% comment_index = x * 3 + y %>
+
+          <% if !@comments[comment_index].nil? %>
+            <div class="tile is-parent">
+              <div class="tile is-child box">
+                <%# FIX to take to post %>
+                <% temp = @comments[comment_index] %>
+                <% commented_post = nil %>
+
+                <% while 1 do %>
+                  <% if temp.commentable_type == 'Comment' %>
+                    <% temp = Comment.find(temp.commentable_id) %>
+                  <% else %>
+                    <% commented_post = Post.find(temp.commentable_id) %>
+                    <% break %>
+                  <% end %>
+                <% end %>
+
+                <%= link_to post_path(commented_post.id) do %>
+                  <div class="comment-link">
+                    <p class="subtitle"><%= @comments[comment_index].comment_body %></p>
+
+                    <hr class="tile-hr">
+
+                    <% if @comments[comment_index].commentable_type == 'Comment' %>
+                      <% parent_comment = Comment.find(@comments[comment_index].commentable_id) %>
+                      
+                      <div class="content">
+                        <p class="subtitle is-6">
+                          <span>Posted in response to </span>
+                          <span class="user-name"><%= User.find(parent_comment.user_id).username %></span>
+                          <span>'s comment:</span>
+                        </p>
+                        <p class="subtitle is-6">
+                          <span>"</span>
+                          <span><%= parent_comment.comment_body %></span>
+                          <span>"</span>
+                        </p>
+                      </div>
+                    <% else %>
+                      <% parent_post = Post.find(@comments[comment_index].commentable_id) %>
+
+                      <div class="content">
+                        <p class="subtitle is-6">
+                          <span>Posted in response to </span>
+                          <span class="user-name"><%= parent_post.user.username %></span>
+                          <span>'s post titled:</span>
+                        </p>
+                        <p class="subtitle is-6">
+                          <span>"</span>
+                          <span><%= parent_post.post_title %></span>
+                          <span>"</span>
+                        </p>
+                      </div>
+                    <% end %>
+                  </div>
+                <% end %>
+                
+
+                <% if user_signed_in? && current_user.id == @comments[comment_index].user_id %>
+                  <div class="tile-controls">
+                    <hr class="tile-hr">
+                
+                    <div class="tile-buttons">
+                      <%= link_to edit_comment_path(@comments[comment_index].id) do %>
+                        <span class='icon'><%= fa_icon('edit') %></span>
+                        <span>Edit comment</span>
+                      <% end %>
+                      
+                      <% if params[:controller] == 'my_comments' %>
+                        <span> | </span>
+                        <%= link_to comment_path(@comments[comment_index].id), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                          <span class='icon'><%= fa_icon('trash') %></span>
+                          <span>Delete comment</span>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% else %>
+            <div class="tile is-parent"><div class="tile is-child"></div></div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

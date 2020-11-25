@@ -4,13 +4,20 @@
       <p>
         <span class="user-name"><%= comment.user.username %></span> 
         <span>says:</span>
+        <% if user_signed_in? && current_user.id == comment.user_id %>
+          <span class="comment_controls">
+            <%= link_to comment_path(comment.id), method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <span class='icon'><%= fa_icon('trash') %></span>
+            <% end %>
+          </span>
+        <% end %>
       </p>
     <% else %>
       <p><span class="user-name">Anonymous says:</span></p>
     <% end %>
   </div>
   
-  <div class="comment_body">
+  <div class="comment_body white-back">
     <p><%= comment.comment_body %></p>
   </div>
 
@@ -31,12 +38,10 @@
     <% end %>
   </div>
 
+  
+
+  <hr class="tile-hr">
+
   <%= render partial: 'comment', collection: comment.comments %>
 
-
-  <%# <% if comment.comments.any? %\>
-    <% comment.comments.each do %\>
-      <%= render partial: 'comment', locals: { comment: comment} %\>
-    <% end %\>
-  <% end %\> %>
 </div>

@@ -1,7 +1,6 @@
-<p>My Posts index page</p>
-<%= @posts.first.post_body %>
-<%# Account for no content! %>
+<div class="column is-three-quarters box tile-back">
 
-<%= link_to 'Show', post %>
-<%= link_to 'Edit', edit_post_path(post) %>
-<%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <h1 class="title">My Posts</h1>
+  
+  <%= render partial: 'posts/tiles' %>
+</div>
