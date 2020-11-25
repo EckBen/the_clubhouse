@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_24_144845) do
+ActiveRecord::Schema.define(version: 2020_11_25_183312) do
 
   create_table "comments", force: :cascade do |t|
     t.text "comment_body"
@@ -29,6 +29,21 @@ ActiveRecord::Schema.define(version: 2020_11_24_144845) do
     t.integer "user_id"
   end
 
+  create_table "taggings", force: :cascade do |t|
+    t.integer "tag_id", null: false
+    t.integer "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_taggings_on_post_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -44,4 +59,6 @@ ActiveRecord::Schema.define(version: 2020_11_24_144845) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "taggings", "posts"
+  add_foreign_key "taggings", "tags"
 end

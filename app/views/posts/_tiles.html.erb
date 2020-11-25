@@ -16,7 +16,7 @@
               <%= link_to post_path(@posts[post_index].id) do %>
                 <p class="subtitle"><%= @posts[post_index].post_title %></p>
                 <hr class="tile-hr">
-                <p class="subtitle is-6"><%= @posts[post_index].post_body[0,50] + '...' %></p>
+                <p class="subtitle is-6"><%= @posts[post_index].post_body[0,150] + '...' %></p>
               <% end %>
 
               <% if user_signed_in? && current_user.id == @posts[post_index].user_id %>

@@ -110,7 +110,7 @@ textarea {
   text-align: center;
 }
 
-.comment_comment_body, .post_post_body, .user_current_password, .user_email, .user_password_confirmation {
+.comment_comment_body, .post_post_body, .post_tag_list, .user_current_password, .user_email, .user_password_confirmation {
   margin-bottom: 12px;
 }
 
@@ -129,6 +129,10 @@ textarea {
 
 .smaller {
   font-size: 14px;
+}
+
+.table {
+  margin: 0 auto;
 }
 
 .tile-back {

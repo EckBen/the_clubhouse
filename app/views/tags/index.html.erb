@@ -1,0 +1,32 @@
+<div class="column is-one-third is-narrow">
+  <div class="box tile-back">
+    <h1 class="title">Tags</h1>
+    <h2 class="subtitle">Currently used tags...</h2>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th><abbr title="Tag Name"></abbr>Name</th>
+          <th><abbr title="Number of Posts Using Tag">#</abbr></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tags.each do |tag| %>
+          <tr>
+            <th>
+              <%= link_to tag_path(tag.id) do %>
+                <span>#<%= tag.name %></span>
+              <% end %>
+            </th>
+            <td><%= tag.posts.length %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= link_to root_path do %>
+      <span class='icon'><%= fa_icon('vihara') %></span>
+      <span>Posts</span>
+    <% end %>
+  </div>
+</div>

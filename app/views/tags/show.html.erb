@@ -1,0 +1,55 @@
+
+
+<div class="column is-three-quarters">
+  <div class="box tile-back">
+    <h1 class="title">Posts</h1>
+    <h2 class="subtitle">Posts currently using #<%= @tag.name %>...</h2>
+  
+    <% ((@tag.posts.length / 3) + 1).times do |x| %>
+      <div class="tile is-ancestor">
+      
+        <% 3.times do |y| %>
+          <% post_index = x * 3 + y %>
+
+          <% if !@tag.posts[post_index].nil? %>
+            <div class="tile is-parent">
+              <div class="tile is-child box">
+                <%= link_to post_path(@tag.posts[post_index].id) do %>
+                  <p class="subtitle"><%= @tag.posts[post_index].post_title %></p>
+                  <hr class="tile-hr">
+                  <p class="subtitle is-6"><%= @tag.posts[post_index].post_body[0,150] + '...' %></p>
+                <% end %>
+
+                <% if user_signed_in? && current_user.id == @tag.posts[post_index].user_id %>
+                  <div class="tile-controls">
+                    <hr class="tile-hr">
+                    <div class="tile-buttons">
+                      <%= link_to edit_post_path(@tag.posts[post_index].id) do %>
+                        <span class='icon'><%= fa_icon('edit') %></span>
+                        <span>Edit Post</span>
+                      <% end %>
+                      
+                      <% if params[:controller] == 'my_posts' %>
+                        <span> | </span>
+                        <%= link_to post_path(@tag.posts[post_index].id), method: :delete, data: { confirm: 'Are you sure?' } do %>
+                          <span class='icon'><%= fa_icon('trash') %></span>
+                          <span>Delete Post</span>
+                        <% end %>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% else %>
+            <div class="tile is-parent"><div class="tile is-child"></div></div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <%= link_to tags_path do %>
+      <span class='icon'><%= fa_icon('hashtag') %>Tags</span>
+    <% end %>
+  </div>
+</div>

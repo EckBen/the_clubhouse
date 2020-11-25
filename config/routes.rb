@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   resources :welcome, only: [:index]
   resources :my_posts, only: [:index]
   resources :my_comments, only: [:index]
+  resources :tags
 
 end

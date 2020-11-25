@@ -36,10 +36,14 @@
           <% end %>
         </div>
         <div class="navbar-end">
+          <%= link_to "#Tags", tags_path, class: "navbar-item" %>
+          
           <% if user_signed_in? %>
             <%= link_to "My Comments", my_comments_path, class: "navbar-item smaller" %>
             <%= link_to "My Posts", my_posts_path, class: "navbar-item smaller" %>
             <%= link_to "Create Post", new_post_path, class: "navbar-item" %>
+          <% else %>
+            <%= link_to "Posts", posts_path, class: "navbar-item" %>
           <% end %>
         </div>
       </div>

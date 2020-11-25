@@ -13,6 +13,17 @@
         <% end %>
       </h2>
       
+      <% if @post.tags.any? %>
+        <p class="subtitle is-6">
+          <span>Tags: </span>
+          <% @post.tags.each do |tag| %>
+            <%= link_to tag_path(tag) do %>
+              <span>#<%= tag.name %></span>
+            <% end %>
+          <% end %>
+        </p>
+      <% end %>
+      
       <div class="block white-back">
         <p>
           <%= @post.post_body %>
