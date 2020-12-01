@@ -5,3 +5,6 @@ This web app is a mock social media application. It leverages Ruby on Rails with
 
 ## Why
 I created this in response to a Project prompt from The Odin Project. I decided to go a little above and beyond to test and push myself beyond what I felt ready for.
+
+## See it in action
+clubhouse-eck.herokuapp.com
